@@ -78,3 +78,15 @@ def normalized_vector(lm: np.ndarray) -> np.ndarray:
     pts -= pts[WRIST]
     pts /= hand_size(lm)
     return pts.flatten()
+
+
+def pinch_ratio(lm: np.ndarray) -> float:
+    """Écart bout du pouce - bout de l'index, divisé par la taille de la main."""
+    p = _xy(lm)
+    return float(np.linalg.norm(p[4] - p[8]) / hand_size(lm))
+
+
+def palm_center(lm: np.ndarray) -> np.ndarray:
+    """Centre de la paume (poignet + bases des doigts), stable quand les doigts bougent."""
+    p = _xy(lm)
+    return p[[0, 5, 9, 13, 17]].mean(axis=0)

@@ -1,0 +1,7 @@
+# Lecteur « media » (Spotify gratuit) sous Windows : vraie pochette, titre, position du morceau
+pycaw>=20240210
+winrt-runtime>=2.0
+winrt-Windows.Foundation>=2.0
+winrt-Windows.Media.Control>=2.0
+winrt-Windows.Storage.Streams>=2.0
+mutagen>=1.47      # pochettes intégrées aux fichiers MP3/FLAC/M4A (lecteur local)

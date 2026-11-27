@@ -5,7 +5,15 @@ __pycache__/
 venv/
 models/*.task
 models/*.joblib
+models/vosk-model-*/
 data/*.csv
 music/*
 !music/.gitkeep
 reports/
+data/images/
+data/yolo/
+runs/
+models/*.pt
+yolov8*.pt
+.env
+models/.spotify_token

@@ -25,6 +25,10 @@ class GestureStabilizer:
         self._fired_label = None
         self._last_fire = -1e9
 
+    def reset(self):
+        """Oublie le geste en cours (ex. passage en veille)."""
+        self._candidate, self._count, self._fired_label = config.NONE, 0, None
+
     @property
     def progress(self) -> float:
         """Avancement de la validation (0 -> 1), utile pour l'affichage."""

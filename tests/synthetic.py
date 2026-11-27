@@ -56,5 +56,16 @@ POSES = {
     "thumbs_down": dict(thumb="out", fingers=(0, 0, 0, 0), rotation_deg=270),
     "two_fingers": dict(thumb="fold", fingers=(1, 1, 0, 0)),
     "index_left": dict(thumb="fold", fingers=(1, 0, 0, 0), rotation_deg=-90),
-    "none": dict(thumb="fold", fingers=(0, 0, 0, 0)),  # poing fermé
+    "fist": dict(thumb="fold", fingers=(0, 0, 0, 0)),          # poing fermé
+    "none": dict(thumb="fold", fingers=(1, 1, 1, 0)),          # trois doigts : aucun geste
 }
+
+
+def pinch_hand(gap: float, center=(0.5, 0.75), scale=1.0):
+    """Main en pose « pincement » : index tendu, autres doigts repliés,
+    bout du pouce placé à `gap` (fraction de taille de main) du bout de l'index."""
+    lm = make_hand(thumb="side", fingers=(1, 0, 0, 0), center=center, scale=scale)
+    size = np.linalg.norm(lm[9, :2] - lm[0, :2])
+    lm[4, :2] = lm[8, :2] + np.array([-gap * size, 0.0])
+    lm[3, :2] = lm[4, :2] + (lm[2, :2] - lm[4, :2]) * 0.4   # pouce resté droit
+    return lm

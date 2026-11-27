@@ -1,0 +1,4 @@
+# Approche B (YOLOv8) : seulement pour --classifier yolo ou l'entraînement
+# Sur un PC sans GPU, installez d'abord torch CPU (plus léger) :
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+ultralytics>=8.1

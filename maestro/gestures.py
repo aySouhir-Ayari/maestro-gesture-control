@@ -48,6 +48,10 @@ class RuleClassifier:
             if d[0] < -0.6 and abs(d[0]) > abs(d[1]):
                 return Prediction("index_left", 1.0, s)
 
+        # Poing fermé : les quatre doigts repliés (sert à valider un choix dans la playlist)
+        if not ix and others_folded:
+            return Prediction(config.FIST, 1.0, s)
+
         return Prediction(config.NONE, 1.0, s)
 
 
