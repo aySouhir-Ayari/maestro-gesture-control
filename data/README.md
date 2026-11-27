@@ -39,7 +39,7 @@ python scripts/prepare_hagrid.py --hagrid-ann <dossier des JSON> --hagrid-img <d
 4. Ajout de nos images.
 5. Découpage train/val par personne (`user_id`), puis écriture de `data/yolo/data.yaml`.
 
-## 2. Dataset Maestro (collecté par le groupe)
+## 2. Dataset Maestro (collecté par l'auteure)
 
 Il sert à trois choses : entraîner l'approche A2 (classifieur sur points clés), ajouter le geste `index_left`, absent de HaGRID, et évaluer la robustesse à l'éclairage.
 

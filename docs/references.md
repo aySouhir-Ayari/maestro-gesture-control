@@ -59,6 +59,6 @@ Toutes les sources externes (articles, datasets, modèles, bibliothèques et ser
 
 ## Contributions externes
 
-- Le code de Maestro a été écrit par le groupe. Il utilise les bibliothèques et modèles ci-dessus sans modifier leur code.
+- Le code de Maestro a été écrit dans le cadre de ce projet individuel. Il utilise les bibliothèques et modèles ci-dessus sans modifier leur code.
 - Les seuls poids préentraînés réutilisés sont MediaPipe Hand Landmarker, YOLOv8n COCO (point de départ du fine-tuning) et le modèle Vosk.
 - Un assistant IA (Claude, Anthropic) a été utilisé comme aide à la programmation et à la rédaction de la documentation.

@@ -2,7 +2,7 @@
 
 **Reconnaissance de gestes de la main en temps réel pour contrôler la musique sans contact.**
 
-Projet du module de Computer Vision : Maestro filme l'utilisateur avec une simple webcam, détecte ses mains dans la scène, reconnaît le geste effectué et pilote un lecteur de musique, comme un chef d'orchestre.
+Projet individuel du module de Computer Vision : Maestro filme l'utilisateur avec une simple webcam, détecte ses mains dans la scène, reconnaît le geste effectué et pilote un lecteur de musique, comme un chef d'orchestre.
 
 ## Sommaire
 
@@ -14,7 +14,7 @@ Projet du module de Computer Vision : Maestro filme l'utilisateur avec une simpl
 6. [Datasets](#6-datasets)
 7. [Évaluation expérimentale](#7-évaluation-expérimentale)
 8. [Étapes de réalisation](#8-étapes-de-réalisation)
-9. [Membres du groupe](#9-membres-du-groupe)
+9. [Auteure](#9-auteure)
 10. [Technologies et bibliothèques](#10-technologies-et-bibliothèques)
 11. [Installation et exécution](#11-installation-et-exécution)
 12. [Organisation du dépôt](#12-organisation-du-dépôt)
@@ -114,7 +114,7 @@ Webcam (OpenCV)
 |---|---|---|---|---|
 | **HaGRID** (HAnd Gesture Recognition Image Dataset) | entraînement et évaluation de YOLOv8 (approche B) en scènes réelles | version initiale : 552 992 images RGB FullHD, 18 classes de gestes + `no_gesture`, plus de 34 000 personnes, boîtes englobantes + étiquettes ; découpage par personne | [github.com/hukenovs/hagrid](https://github.com/hukenovs/hagrid) | variante de CC BY-SA 4.0 |
 | **HaGRID Sample 30k 384p** | version réduite utilisée en pratique (téléchargement léger, entraînement sur Colab) | 31 833 images HaGRID réduites en 384 p, 18 classes + `no_gesture`, mêmes annotations | [huggingface.co/datasets/cj-mills/hagrid-sample-30k-384p](https://huggingface.co/datasets/cj-mills/hagrid-sample-30k-384p) (aussi sur Kaggle) | CC BY-SA 4.0 |
-| **Dataset Maestro** (collecté par le groupe) | entraînement de l'approche A2, ajout du geste « index à gauche » à YOLO, évaluation par éclairage | 7 classes, 21 points clés + boîte de la main + 1 image sur 4, 4 conditions d'éclairage (normal, faible, fort, contre-jour) | créé avec `scripts/collect_data.py` | données personnelles : **non publiées** |
+| **Dataset Maestro** (collecté par l'auteure) | entraînement de l'approche A2, ajout du geste « index à gauche » à YOLO, évaluation par éclairage | 7 classes, 21 points clés + boîte de la main + 1 image sur 4, 4 conditions d'éclairage (normal, faible, fort, contre-jour) | créé avec `scripts/collect_data.py` | données personnelles : **non publiées** |
 
 **Correspondance HaGRID → Maestro :** `palm`, `stop` → paume ; `like` → pouce levé ; `dislike` → pouce baissé ; `peace` → deux doigts ; `fist` → poing ; `no_gesture`, `call`, `ok`, `rock`, `one`… → aucun geste. Les classes ambiguës (`peace_inverted`, `three2`…) sont écartées.
 
@@ -142,7 +142,9 @@ Les trois approches sont évaluées **sur les mêmes images** :
 - sur les images de validation HaGRID (scènes réelles) ;
 - en direct à la webcam, avec un protocole guidé.
 
-Les résultats et leur analyse critique sont dans [`results/README.md`](results/README.md).
+**Premiers résultats (A1, règles géométriques, en direct)** : temps réel atteint (≈ 20 ms par image, 16,7 FPS), 67 % des gestes validés en éclairage normal comme faible, mais les gestes du pouce ne sont pas reconnus et il y a trop de fausses activations (12 à 26 par minute). Cela justifie les approches A2 et B.
+
+Les résultats détaillés et leur analyse critique sont dans [`results/README.md`](results/README.md).
 
 ## 8. Étapes de réalisation
 
@@ -155,16 +157,17 @@ Les résultats et leur analyse critique sont dans [`results/README.md`](results/
 | 5 | Approche A2 : RF / SVM / MLP, comparaison avec les règles | `scripts/train_classifier.py` | ✅ code prêt, résultats à produire |
 | 6 | Approche B : préparation HaGRID, fine-tuning YOLOv8 sur Colab | `scripts/prepare_hagrid.py`, `scripts/train_yolo.py`, notebook | ✅ code prêt, entraînement à lancer |
 | 7 | Évaluation comparative hors ligne et en direct | `scripts/evaluate.py`, `scripts/evaluate_live.py` | ✅ code prêt, résultats à produire |
-| 8 | Analyse critique des résultats, améliorations | `results/README.md` | ⏳ |
+| 8 | Analyse critique des résultats, améliorations | `results/README.md` | 🔄 premiers résultats (A1 en direct) |
 | 9 | Intégration de vraie musique (Spotify, pochettes) et démonstration | lecteurs `media` et `spotify` | ✅ |
 | 10 | Rapport final et présentation | `docs/` | ⏳ |
 
-## 9. Membres du groupe
+## 9. Auteure
+
+Projet **individuel** réalisé par :
 
 | Nom | Prénom |
 |---|---|
 | Ayari | Souhir |
-| _à compléter_ | _à compléter_ |
 
 ## 10. Technologies et bibliothèques
 
